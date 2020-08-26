@@ -11,19 +11,67 @@
 </head>
 <body>
     <div class="container">
-        <h1>Pig Dice</h1>
+        <h1 class="text-center" style="margin-top:30px;">Pig Dice</h1>
         <div class="row">
             <!-- Player 1 UI -->
             <div class="col-md-6">
-                <div class="group-std">
+                <!-- Player 1 Sign Up -->
+                <div id="playerOneSignUpGroup" class="group-std">
                     <form id="playerOneSignUp">
                         <div class="form-group">
                             <label for="playerOneName">Name (P1)</label>
-                            <input for="playerOneName" class="form-control" type="text">
+                            <input id="playerOneName" class="form-control" type="text" required>
                         </div>
                         <button type="submit">ENTER GAME</button>
                     </form>
                 </div>
+                <!-- Player 1 Game -->
+                <div id="playerOneGameGroup" class="group-std">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="group-std">
+                                <h4>Turn Total</h4>
+                                <h2>15</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="group-std">
+                                <h4>Overall Total</h4>
+                                <h2>56</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="group-std-no-border">
+                                <button id="playerOneRoll" type="button">ROLL</button>
+                                <button id="playerOneHold" type="button">HOLD</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="group-std">
+                                <h4>Current Roll</h4>
+                                <h2>5</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Player Two UI -->
+            <div class="col-md-6">
+                <!-- Player 2 Sign Up -->
+                <div id="playerTwoSignUpGroup" class="group-std">
+                    <form id="playerTwoSignUp">
+                        <div class="form-group">
+                            <label for="playerTwoName">Name (P2)</label>
+                            <input id="playerTwoName" class="form-control" type="text" required>
+                        </div>
+                        <button type="submit">ENTER GAME</button>
+                    </form>
+                </div>
+                <!-- Player 2 Game -->
                 <div class="group-std">
                     <div class="row">
                         <div class="col-md-6">
@@ -53,40 +101,6 @@
                                 <h4>Current Roll</h4>
                                 <h2>5</h2>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Player Two UI -->
-            <div class="col-md-6">
-                <div class="group-std">
-                    <form id="playerTwoSignUp">
-                        <div class="form-group">
-                            <label for="playerTwoName">Name (P2)</label>
-                            <input for="playerTwoName" class="form-control" type="text">
-                        </div>
-                        <button type="submit">ENTER GAME</button>
-                    </form>
-                </div>
-                <div class="group-std">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="group-std">
-                                <h4>Turn Total</h4>
-                                <h2>15</h2>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="group-std">
-                                <h4>Overall Total</h4>
-                                <h2>56</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button id="playerTwoRoll" type="button">ROLL</button>
-                            <button id="playerTwoHold" type="button">HOLD</button>
                         </div>
                     </div>
                 </div>
