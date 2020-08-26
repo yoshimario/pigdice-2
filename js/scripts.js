@@ -25,10 +25,12 @@ Player.prototype.roll = function() {
         this.isTurn = false;
     } else {
         this.turnPointTotal += roll;
-        if ((pointTotal + turnPointTotal) >= 100) {
-            // trigger you win function
+        if ((this.pointTotal + this.turnPointTotal) >= 100) {
+            window.open("https://media.giphy.com/media/cOtvwSHKaFK3Ul1VVu/giphy.gif")
+            // update display: winner --> this.name
         } 
     }
+    return roll;
 }
 
 Player.prototype.hold = function() {
@@ -38,15 +40,14 @@ Player.prototype.hold = function() {
 }
 
 
-function p1PointTotal () {
-  let pointTotal = (randoNumber + turnPointTotal) ;
-  if (pointTotal >= 100) {
-    alert("You Win!")
-  } else if {dice.roll()
-    
-  }
-}
 
+
+
+/* Player.prototype.win = function() {
+    // victory display
+    // update display: winner --> this.name
+    // update display: point total --> this.pointTotal
+} */
 
 // UI Logic
 $(document).ready(function(){
@@ -57,6 +58,7 @@ $(document).ready(function(){
         event.preventDefault();
         const name = $("input#playerOneName").val();
         playerOne = new Player(name,1,true);
+        $("#playerOneEnterName").html(name);
         console.log(playerOne);
         $("#playerOneSignUpGroup").fadeOut(1000,function() {
             $("#playerOneGameGroup").fadeIn(1000);
@@ -65,8 +67,48 @@ $(document).ready(function(){
     $("#playerTwoSignUp").submit(function(event) {
         event.preventDefault();
         const name = $("input#playerTwoName").val();
+        $("#playerTwoEnterName").html(name);
         playerTwo = new Player(name,2,false);
         console.log(playerTwo);
-        //$("#playerTwoSignUpGroup").fadeOut(1000);
+        $("#playerTwoSignUpGroup").fadeOut(1000,function() {
+            $("#playerTwoGameGroup").fadeIn(1000);
+        });
+    })
+    // Roll & Hold Button Logic
+    $("button#playerOneRoll").click(function() {
+        const result = playerOne.roll();
+        updatePlayerOneTurnTotal(playerOne,result);
+    })
+    $("button#playerOneHold").click(function() {
+        playerOne.hold();
+        updatePlayerOneOverallTotal(playerOne);
+        $("button#playerOneRoll").disabled = true;
+
+    })
+    $("button#playerTwoRoll").click(function() {
+        const result = playerTwo.roll();
+        updatePlayerTwoTurnTotal(playerTwo,result);
+    })
+    $("button#playerTwoHold").click(function() {
+        playerTwo.hold();
+        updatePlayerTwoOverallTotal(playerTwo);
     })
 });
+
+function updatePlayerOneTurnTotal(player,roll) {
+    $("#playerOneTurnTotal").text(player.turnPointTotal);
+    $("#playerOneCurrentRoll").text(roll);
+}
+
+function updatePlayerOneOverallTotal(player) {
+    $("#playerOneOverallTotal").text(player.pointTotal);
+}
+
+function updatePlayerTwoTurnTotal(player,roll) {
+    $("#playerTwoTurnTotal").text(player.turnPointTotal);
+    $("#playerTwoCurrentRoll").text(roll);
+}
+
+function updatePlayerTwoOverallTotal(player) {
+    $("#playerTwoOverallTotal").text(player.pointTotal);
+}
