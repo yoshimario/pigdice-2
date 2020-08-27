@@ -23,6 +23,7 @@ Player.prototype.roll = function() {
     if (roll === 1) {
         this.turnPointTotal = 0;
         this.isTurn = false;
+        updateDisables(this);
     } else {
         this.turnPointTotal += roll;
         if ((this.pointTotal + this.turnPointTotal) >= 100) {
@@ -39,8 +40,22 @@ Player.prototype.hold = function() {
     this.isTurn = false;
 }
 
+function updateDisables(player) {
+    if (player.id == 1) {
+        $("#playerTwoHold").prop("disabled", false);
+        $("#playerOneHold").prop("disabled", true);
+        $("#playerTwoRoll").prop("disabled", false);
+        $("#playerOneRoll").prop("disabled", true);
+    } else if (player.id == 2) {
+        $("#playerTwoHold").prop("disabled", true);
+        $("#playerOneHold").prop("disabled", false);
+        $("#playerTwoRoll").prop("disabled", true);
+        $("#playerOneRoll").prop("disabled", false);
+    }
+}
 
 
+//$("playerOneHold#button").prop("disabled", true)
 
 
 /* Player.prototype.win = function() {
@@ -52,8 +67,8 @@ Player.prototype.hold = function() {
 // UI Logic
 $(document).ready(function(){
    // Player Sign Up Logic
-   let playerOne;
-   let playerTwo;
+    let playerOne;
+    let playerTwo;
     $("#playerOneSignUp").submit(function(event) {
         event.preventDefault();
         const name = $("input#playerOneName").val();
@@ -82,7 +97,7 @@ $(document).ready(function(){
     $("button#playerOneHold").click(function() {
         playerOne.hold();
         updatePlayerOneOverallTotal(playerOne);
-        $("button#playerOneRoll").disabled = true;
+        updateDisables(playerOne);
 
     })
     $("button#playerTwoRoll").click(function() {
@@ -92,6 +107,7 @@ $(document).ready(function(){
     $("button#playerTwoHold").click(function() {
         playerTwo.hold();
         updatePlayerTwoOverallTotal(playerTwo);
+        updateDisables(playerTwo);
     })
 });
 
